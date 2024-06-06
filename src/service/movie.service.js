@@ -12,7 +12,7 @@ module.exports = {
             let moviesProcessed = 0;
             //insert each value given in the request body
             for (const movie of movieList) {
-                if (!movie.title || !movie.year || !movie.genre || !movie.banner_image) {
+                if (!movie.title || !movie.year) {
                     console.error('Invalid movie data:', movie);
                     continue;
                 }
@@ -31,6 +31,7 @@ module.exports = {
                 pool.query(query, values, (error, results, fields) => {
                     if (error) {
                         console.error('Database error:', error);
+                        return callback(error);
                     }
 
                     moviesProcessed++;
