@@ -17,7 +17,7 @@ module.exports = {
                     continue;
                 }
                 const query = `
-                    INSERT INTO Movies (title, year, genre, banner_image)
+                    INSERT INTO movies (title, year, genre, banner_image)
                     VALUES (?, ?, ?, ?)
                 `;
 
@@ -48,7 +48,7 @@ module.exports = {
     //get list of movie data stored in the database
     getAllMoviesService: (page, callback) => {
         try {
-            query = `SELECT * FROM Movies LIMIT 30 OFFSET ?`
+            query = `SELECT * FROM movies LIMIT 30 OFFSET ?`
             //retrieves movie data list of length 30 starting from the next row of previously sent list
             pool.query(query, page * 30, (error, results, fields) => {
                 if (error) {
@@ -68,9 +68,9 @@ module.exports = {
             //or get the movies data matching the param
             let query
             if (!name) {
-                query = `SELECT * FROM Movies LIMIT 50 OFFSET 0`
+                query = `SELECT * FROM movies LIMIT 50 OFFSET 0`
             } else {
-                query = `SELECT * FROM Movies WHERE title LIKE ?`;
+                query = `SELECT * FROM movies WHERE title LIKE ?`;
             }
 
             pool.query(query, [`%${name}%`], (error, results, fields) => {
