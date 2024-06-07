@@ -48,7 +48,7 @@ module.exports = {
     //get list of movie data stored in the database
     getAllMoviesService: (page, callback) => {
         try {
-            query = `SELECT * FROM movies LIMIT 30 OFFSET ?`
+            query = `SELECT * FROM movies `
             //retrieves movie data list of length 30 starting from the next row of previously sent list
             pool.query(query, page * 30, (error, results, fields) => {
                 if (error) {
