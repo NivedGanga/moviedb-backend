@@ -4,9 +4,12 @@ const movieRouter = require("./src/routes/movie.router")
 const cors = require('cors');
 //creating app
 const app = express()
-
+app.use(cors({
+    origin: true,
+    credentials: true, 
+}));
 app.use(express.json())
-app.use(cors());
+
 const port = process.env.PORT || 10000
 
 //routes
